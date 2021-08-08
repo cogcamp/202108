@@ -29,11 +29,18 @@ mainScene.create = function() {
     
     
     // ライフのテキスト表示
+    this.lifeText = this.add.text(30,20,'ライフ：' + this.life,{
+        font:'20px Open Sans',
+        fill:'#ff0000'
+    });
     
 };
 
 mainScene.update = function() {
     // ボールがシーンの最下部に到達した
+    if(this.ball.y >= this.game.config.height - this.ball.width / 2){
+        this.failToHit();
+    }
     
     
     // キーボードのカーソルオブジェクトを取得
@@ -74,7 +81,7 @@ mainScene.config = function() {
 
 mainScene.createBall = function() {
     // ボール作成
-    this.ball = this.physics.add.image(400,500,'ball1');
+    this.ball = this.physics.add.image(400,500,'ball2');
     this.ball.setDisplaySize(22,22);
     this.ball.setCollideWorldBounds(true);
     this.ball.setBounce(1);  
@@ -82,7 +89,7 @@ mainScene.createBall = function() {
 
 mainScene.createPaddle = function() {
      // パドル作成
-     this.paddle = this.physics.add.image(400,550,'paddle1');
+     this.paddle = this.physics.add.image(400,550,'paddle2');
      this.paddle.setDisplaySize(104,24);
      this.paddle.setImmovable();
      this.paddle.isStart = true;
@@ -107,20 +114,20 @@ mainScene.hitPaddle = function (paddle, ball) {
 };
 
 mainScene.createBlocks = function() {
-    // 横10列、縦6行並べる
+    // 横10列、縦7行並べる
     //ブロックの色の配列
-    var blockColors = ['red1','green1','yellow1','silver1','blue1','purple1'];
+    var blockColors = ['silver2','yellow2','green2','blue2','purple2','red2','silver2'];
     
     //物理エンジン対象固定オブジェクトグループ作成
     this.blocks = this.physics.add.staticGroup();
     
-    
-    //縦に6行
-    for(var i = 0 ; i < 6 ; i++){
+
+    //縦に7行
+    for(var i = 0 ; i < 7 ; i++){
         //横に10列
         for(var j = 0 ; j < 10 ; j++){
             var color = blockColors[i];
-            var block = this.blocks.create(80 + j * 64,80 + i * 32,color);
+            var block = this.blocks.create(80 + j * 64,160 + i * 32,color);
             block.setOrigin(0,0);
             block.setDisplaySize(64,32);
             block.refreshBody();
