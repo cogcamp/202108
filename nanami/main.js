@@ -114,16 +114,16 @@ mainScene.hitPaddle = function (paddle, ball) {
 };
 
 mainScene.createBlocks = function() {
-    // 横10列、縦7行並べる
+    // 横10列、縦9行並べる
     //ブロックの色の配列
-    var blockColors = ['silver2','yellow2','green2','blue2','purple2','red2','silver2'];
+    var blockColors = ['yellow1','green1','blue1','purple1','silver1','purple1','blue1','green1','si1'];
     
     //物理エンジン対象固定オブジェクトグループ作成
     this.blocks = this.physics.add.staticGroup();
     
 
-    //縦に7行
-    for(var i = 0 ; i < 7 ; i++){
+    //縦に9行
+    for(var i = 0 ; i < 9 ; i++){
         //横に10列
         for(var j = 0 ; j < 10 ; j++){
             var color = blockColors[i];
