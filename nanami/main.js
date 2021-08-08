@@ -29,12 +29,19 @@ mainScene.create = function() {
     
     
     // ライフのテキスト表示
-    this.lifeText = this.add.text(30,20,'ライフ：' + this.life,{
-        font:'20px Open Sans',
+    this.lifeText = this.add.text(30,10,'ライフ：' + this.life,{
+        font:'18px Open Sans',
         fill:'#ff0000'
     });
     
+    // スコアのテキスト表示
+    this.score = 0;
+    this.scoreText = this.add.text(150,10,'スコア：' + this.score,{
+        font:'18px Open Sans',
+        fill:'#ff0000'
+    });
 };
+
 
 mainScene.update = function() {
     // ボールがシーンの最下部に到達した
@@ -77,6 +84,9 @@ mainScene.config = function() {
     
     // ライフ
     this.life = 3;
+    
+     //スコア    
+    this.score = 0
 };
 
 mainScene.createBall = function() {
@@ -114,27 +124,25 @@ mainScene.hitPaddle = function (paddle, ball) {
 };
 
 mainScene.createBlocks = function() {
-    // 横10列、縦9行並べる
+    // 横20列、縦12行並べる
     //ブロックの色の配列
-    var blockColors = ['yellow1','green1','blue1','purple1','silver1','purple1','blue1','green1','si1'];
+    var blockColors = ['blue1','green1','yellow1','silver1','blue2','green2','green2','blue2','silver1','yellow1','green1','blue1'];
     
     //物理エンジン対象固定オブジェクトグループ作成
     this.blocks = this.physics.add.staticGroup();
     
 
-    //縦に9行
-    for(var i = 0 ; i < 9 ; i++){
-        //横に10列
-        for(var j = 0 ; j < 10 ; j++){
+    //縦に12行
+    for(var i = 0 ; i < 12 ; i++){
+        //横に20列
+        for(var j = 0 ; j < 20 ; j++){
             var color = blockColors[i];
-            var block = this.blocks.create(80 + j * 64,160 + i * 32,color);
+            var block = this.blocks.create(80 + j * 32,40 + i * 24,color);
             block.setOrigin(0,0);
-            block.setDisplaySize(64,32);
+            block.setDisplaySize(32,24);
             block.refreshBody();
         }
     }
-    
-    
     this.physics.add.collider(this.ball,this.blocks,this.hitBlock,null,this);
 };
 
@@ -149,13 +157,15 @@ mainScene.hitBlock = function (ball, block) {
             callback: this.gameClear,
             loop: false,
             callbackScope: this,
-        });
-    }
+        }); 
+    } 
+    this.score += 100;
+    this.scoreText.text = 'スコア：' + this.score;
 };
 
 mainScene.gameClear = function() {
     // ゲームクリア
-    alert("おめでとうございます");
+    alert("おめでとうございます！");
     // スタートシーンに移動
     this.scene.start("startScene");
 };
@@ -166,6 +176,8 @@ mainScene.failToHit =  function () {
     this.paddle.isStart = true;
     // ライフを減らす
     this.life--;
+    this.score =this.score * 1 / 2;
+    this.scoreText.text = 'スコア：' + this.score
     this.lifeText.text = 'ライフ：' + this.life;
     // ライフが0になると
     if(this.life <= 0) {
@@ -177,8 +189,7 @@ mainScene.failToHit =  function () {
             callbackScope: this,
         });
     }
-};
-
+}
 mainScene.gameOver = function() {
     // ゲームオーバー
     alert("ゲームオーバー");
