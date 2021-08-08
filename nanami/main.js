@@ -25,7 +25,7 @@ mainScene.create = function() {
     
     
     // ブロック作成
-    this.createBlcks();
+    this.createBlocks();
     
     
     // ライフのテキスト表示
@@ -109,14 +109,26 @@ mainScene.hitPaddle = function (paddle, ball) {
 mainScene.createBlocks = function() {
     // 横10列、縦6行並べる
     //ブロックの色の配列
-    var blockColors = ['red1','green!','yellow1','silver1','blue1','purple1'];
+    var blockColors = ['red1','green1','yellow1','silver1','blue1','purple1'];
     
     //物理エンジン対象固定オブジェクトグループ作成
     this.blocks = this.physics.add.staticGroup();
     
     
     //縦に6行
-    for(var i = 0 ; i)
+    for(var i = 0 ; i < 6 ; i++){
+        //横に10列
+        for(var j = 0 ; j < 10 ; j++){
+            var color = blockColors[i];
+            var block = this.blocks.create(80 + j * 64,80 + i * 32,color);
+            block.setOrigin(0,0);
+            block.setDisplaySize(64,32);
+            block.refreshBody();
+        }
+    }
+    
+    
+    this.physics.add.collider(this.ball,this.blocks,this.hitBlock,null,this);
 };
 
 mainScene.hitBlock = function (ball, block) {
