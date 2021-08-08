@@ -18,12 +18,14 @@ mainScene.create = function() {
         //ゲーム開始状態ならば
         if(this.paddle.isStart){
             //ボール発射
-            this.ball.setVelocity(this.ballSpeedX,this.ballSpeedY)
+            this.ball.setVelocity(this.ballSpeedX,this.ballSpeedY);
+            this.paddle.isStart = false;
         }
-    }
+    },this);
     
     
     // ブロック作成
+    this.createBlcks();
     
     
     // ライフのテキスト表示
@@ -89,13 +91,32 @@ mainScene.createPaddle = function() {
 
 mainScene.hitPaddle = function (paddle, ball) {
     // ボールにX方向の角度を設定
+    var diff = 0;
+    if(ball.x < paddle.x){
+        diff = paddle.x - ball.x;
+        ball.setVelocityX(-10 * diff);
+    }else if(ball.x > paddle.x){
+        //ボールがパドルの右側に衝突
+        diff = ball.x - paddle.x;
+        ball.setVelocityX(10 * diff);
+    }else{
+        //X方向の加速度は無し
+        ball.setVelocityX(0);
+    }
     
 };
 
 mainScene.createBlocks = function() {
     // 横10列、縦6行並べる
+    //ブロックの色の配列
+    var blockColors = ['red1','green!','yellow1','silver1','blue1','purple1'];
+    
+    //物理エンジン対象固定オブジェクトグループ作成
+    this.blocks = this.physics.add.staticGroup();
     
     
+    //縦に6行
+    for(var i = 0 ; i)
 };
 
 mainScene.hitBlock = function (ball, block) {
