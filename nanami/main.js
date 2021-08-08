@@ -14,6 +14,13 @@ mainScene.create = function() {
     
     
     // スペースキーのクリックでボール発射
+    this.input.keyboard.on('keydown-SPACE',function(event){
+        //ゲーム開始状態ならば
+        if(this.paddle.isStart){
+            //ボール発射
+            this.ball.setVelocity(this.ballSpeedX,this.ballSpeedY)
+        }
+    }
     
     
     // ブロック作成
