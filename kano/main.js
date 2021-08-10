@@ -71,7 +71,7 @@ mainScene.config = function() {
     this.ballSpeedY =300 ;
     
     // ライフ
-    this.life =10;
+    this.life =5;
     // スコア
     this.sucoa=0;
     
