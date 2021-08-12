@@ -71,7 +71,7 @@ mainScene.config = function() {
     this.ballSpeedY =300 ;
     
     // ライフ
-    this.life =5;
+    this.life =1;
     // スコア
     this.sucoa=0;
     
@@ -141,7 +141,7 @@ mainScene.hitBlock = function (ball, block) {
     block.destroy();
     this.sucoa+=5;
     this.sucoaText.text = 'スコア：' + this.sucoa;
-    if(this.sucoa>=200){
+    if(this.sucoa>=250){
         this.time.addEvent({
             duration: 500,
             callback: this.gameClear,
@@ -163,7 +163,7 @@ mainScene.hitBlock = function (ball, block) {
 
 mainScene.gameClear = function() {
     // ゲームクリア
-    alert("おめでとうございます");
+    alert("クリア！おめでとう!");
     // スタートシーンに移動
     this.scene.start("startScene");
 };
