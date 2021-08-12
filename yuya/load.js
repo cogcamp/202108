@@ -24,7 +24,7 @@ loadScene.preload = function () {
     this.load.image('silver2','./assets/images/silver2.png');
     
     // ボール画像
-    this.load.image('ball1','./assets/images/ball1.png');
+    this.load.image('ball1','./assets/images/dorami.jpeg');
     this.load.image('ball2','./assets/images/ball2.png');
 };
 
