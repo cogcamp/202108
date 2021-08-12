@@ -30,6 +30,8 @@ mainScene.create = function() {
     });
 };
 
+
+
 mainScene.update = function() {
     // ボールがシーンの最下部に到達した
     if (this.ball.y >= this.game.config.height - this.ball.width / 2) {
