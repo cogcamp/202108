@@ -6,6 +6,7 @@ mainScene.create = function() {
     
     // ボール作成
     this.createBall();
+    this.cerateBall();
     
     // パドル作成
     this.createPaddle();
@@ -65,10 +66,10 @@ mainScene.config = function() {
     
     // ボール発射の加速度
     this.ballSpeedX = 0;
-    this.ballSpeedY = -300;
+    this.ballSpeedY = -3000;s
     
     // ライフ
-    this.life = 3;
+    this.life = 9;
 };
 
 mainScene.createBall = function() {
