@@ -22,12 +22,23 @@ mainScene.create = function() {
     this.createBlocks();
     
     // ライフのテキスト表示
+    this.lifeText=this.add.text(30,20,"❤️:"+this.life,{
+        font:"20px open sans",
+        fill:"#ff0000"
+    });
+    this.scoreText=this.add.text(130,20,"消したブロック数:"+this.score,{
+        font:"20px open sans",
+        fill:"#ff0000"
+    });
     
+
 };
 
 mainScene.update = function() {
     // ボールがシーンの最下部に到達した
-    
+    if(this.ball.y>=this.game.config.height-this.ball.width/2){
+        this.failToHit();
+    }
     
     // キーボードのカーソルオブジェクトを取得
     var cursors = this.input.keyboard.createCursorKeys();
@@ -47,10 +58,10 @@ mainScene.update = function() {
 
 mainScene.config = function() {
     // 背景色の設定
-    this.cameras.main.setBackgroundColor('#cccccc');
+    this.cameras.main.setBackgroundColor('#5ce8ff');
     
     // パドルの移動速度
-    this.paddleSpeed = 10;
+    this.paddleSpeed = 12;
     
     // ボール発射の加速度
     this.ballSpeedX = 0;
@@ -58,20 +69,22 @@ mainScene.config = function() {
     
     // ライフ
     this.life = 3;
+    //けす
+    this.score=0;
 };
-
+　
 mainScene.createBall = function() {
     // ボール作成
-    this.ball=this.physics.add.image(400,480,"ball1");
-    this.ball.setDisplaySize(22,22);
+    this.ball=this.physics.add.image(400,480,"ball2");
+    this.ball.setDisplaySize(21,22);
     this.ball.setCollideWorldBounds(true);
     this.ball.setBounce(1);
 };
 
 mainScene.createPaddle = function() {
      // パドル作成
-this.paddle=this.physics.add.image(400,520,"paddle1")
-this.paddle.setDisplaySize(104,24);
+this.paddle=this.physics.add.image(400,520,"paddle2")
+this.paddle.setDisplaySize(104,18);
 this.paddle.setImmovable();
 this.paddle.isStart=true;
 this.physics.add.collider(this.paddle,this.ball,this.hitPaddle,null,this);
@@ -81,11 +94,11 @@ mainScene.hitPaddle = function (paddle, ball) {
     // ボールにX方向の角度を設定
     var diff=0;
     if(ball.x<paddle.x){
-    diff=paddle.x-ball.x;
-   ball.setVelocityX(-10*diff);
+diff=paddle.x-ball.x;
+ball.setVelocityX(-11*diff);
     }else if(ball.x>paddle.x){
         diff=ball.x-paddle.x;
-        ball.setVelocityX(10*diff);
+        ball.setVelocityX(11*diff);
     }else{
         ball.setVelocityX(0);
     }
@@ -97,17 +110,20 @@ mainScene.createBlocks = function() {
     this.blocks=this.physics.add.staticGroup();
     for(var i=0;i<6;i++){
         for(var j=0;j<10;j++){
-            var color=blockcolorsi
+            var color=blockcolors[i];
             var block=this.blocks.create(80+j*64,80+i*32,color);
             block.setOrigin(0,0);
             block.setDisplaySize(64,32);
             block.refreshBody();
         }
     }
-    this.Ph
+    this.physics.add.collider(this.ball,this.blocks,this.hitBlock,null,this);
 };
 
 mainScene.hitBlock = function (ball, block) {
+    //kesu
+    this.score++;
+    this.scoreText.text="消したブロック数:"+this.score;
     // 衝突したブロックを削除
     block.destroy();
     // ブロックの残りを判定
@@ -124,7 +140,7 @@ mainScene.hitBlock = function (ball, block) {
 
 mainScene.gameClear = function() {
     // ゲームクリア
-    alert("おめでとうございます");
+    alert("😆おめでとう😆");
     // スタートシーンに移動
     this.scene.start("startScene");
 };
@@ -135,7 +151,7 @@ mainScene.failToHit =  function () {
     this.paddle.isStart = true;
     // ライフを減らす
     this.life--;
-    this.lifeText.text = 'ライフ：' + this.life;
+    this.lifeText.text = '️❤️：' + this.life;
     // ライフが0になると
     if(this.life <= 0) {
         // 0.5秒後にゲームオーバー
@@ -150,7 +166,7 @@ mainScene.failToHit =  function () {
 
 mainScene.gameOver = function() {
     // ゲームオーバー
-    alert("ゲームオーバー");
+    alert("GAME OVER！🤪🤪🤪🤪🤪🤪");
     // スタートシーンに移動
     this.scene.start("startScene");
 };
