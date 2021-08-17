@@ -24,8 +24,8 @@ mainScene.create = function() {
     
     // ライフのテキスト表示
     this.lifeText=this.add.text(30,20,'life(s):'+this.life,{
-        font:'20px Open Sans',
-        fill:'#000000'
+        font:'20px Monaco',
+        fill:'#00ffff'
     });
 };
 
@@ -58,7 +58,7 @@ mainScene.update = function() {
 
 mainScene.config = function() {
     // 背景色の設定
-    this.cameras.main.setBackgroundColor('#afeeee');
+    this.cameras.main.setBackgroundColor('#5f9ea0');
     
     // パドルの移動速度
     this.paddleSpeed = 10;
@@ -106,7 +106,7 @@ mainScene.hitPaddle = function (paddle, ball) {
 mainScene.createBlocks = function() {
     // 横10列、縦6行並べる
     //ブロックの色の配列
-    var blockColors=['mariobox','pow','brokenbrick','coolshape','redmetal','softbrick'];
+    var blockColors=['meeseeks','battery','ammo','coolshape','redmetal','softbrick'];
     
     //物理エンジン対象固定オブジェクトグループ作成
     this.blocks=this.physics.add.staticGroup();

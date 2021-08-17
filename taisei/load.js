@@ -14,14 +14,14 @@ loadScene.preload = function () {
     this.load.image('mariobox','./assets/images/luckybox.png');
     this.load.image('brokenbrick','./assets/images/brokenbrick.png');
     this.load.image('coolshape','./assets/images/coolshpe.png');
-    this.load.image('softbrick','./assets/images/softbrick.png');
+    this.load.image('ammo','./assets/images/ammo.png');
     this.load.image('redmetal','./assets/images/redmetal.png');
     this.load.image('pow','./assets/images/pow.png');
-    this.load.image('yellow1','./assets/images/yellow1.png');
+    this.load.image('battery','./assets/images/battery.png');
     this.load.image('yellow2','./assets/images/yellow2.png');
     this.load.image('purple1','./assets/images/purple1.png');
     this.load.image('purple2','./assets/images/purple2.png');
-    this.load.image('silver1','./assets/images/silver1.png');
+    this.load.image('meeseeks','./assets/images/meeseeks.png');
     this.load.image('silver2','./assets/images/silver2.png');
     
     // ボール画像
