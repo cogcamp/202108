@@ -8,6 +8,7 @@ loadScene.preload = function () {
     // パドル画像
     this.load.image('paddle1','./assets/images/paddle1.png');
     this.load.image('paddle2','./assets/images/paddle2.png');
+    this.load.image('お箸','./assets/images/watermark.jp');
 
     // ブロック画像
     this.load.image('red1','./assets/images/red1.png');
