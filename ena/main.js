@@ -109,7 +109,7 @@ mainScene.hitPaddle = function (paddle, ball) {
 mainScene.createBlocks = function() {
     // 横10列、縦6行並べる
     //ブロックの色の配列
-    var blockColors=['pink1','green1','yellow1','silver1','blue1','purple1']
+    var blockColors=['purple1','yellow1','blue1','yellow1','blue1','purple1']
     
     //物理エンジン対象固定オブジェクトグループ作成
     this.blocks=this.physics.add.staticGroup();
