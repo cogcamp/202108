@@ -15,7 +15,7 @@ loadScene.preload = function () {
     this.load.image('brokenbrick','./assets/images/brokenbrick.png');
     this.load.image('coolshape','./assets/images/coolshpe.png');
     this.load.image('ammo','./assets/images/ammo.png');
-    this.load.image('redmetal','./assets/images/redmetal.png');
+    this.load.image('greenrick','./assets/images/dead rick.png');
     this.load.image('pow','./assets/images/pow.png');
     this.load.image('battery','./assets/images/battery.png');
     this.load.image('yellow2','./assets/images/yellow2.png');
