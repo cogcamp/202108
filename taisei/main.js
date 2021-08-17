@@ -17,7 +17,9 @@ mainScene.create = function() {
         }
     },this);
 
-
+    this.input.keyboard.on('keydown-P',function(event){
+     this.life++
+    })
     
     // ブロック作成
     this.createBlocks()
@@ -58,7 +60,7 @@ mainScene.update = function() {
 
 mainScene.config = function() {
     // 背景色の設定
-    this.cameras.main.setBackgroundColor('#5f9ea0');
+    this.cameras.main.setBackgroundColor('#808080');
     
     // パドルの移動速度
     this.paddleSpeed = 10;
@@ -82,7 +84,7 @@ mainScene.createBall = function() {
 mainScene.createPaddle = function() {
      // パドル作成
     this.paddle=this.physics.add.image(400,550,'kick');
-    this.paddle.setDisplaySize(100,63);
+    this.paddle.setDisplaySize(100,52);
     this.paddle.setImmovable();
     this.paddle.isStart=true;
     this.physics.add.collider(this.paddle,this.ball,this.hitPaddle,null,this)
@@ -106,7 +108,7 @@ mainScene.hitPaddle = function (paddle, ball) {
 mainScene.createBlocks = function() {
     // 横10列、縦6行並べる
     //ブロックの色の配列
-    var blockColors=['meeseeks','battery','ammo','coolshape','redmetal','softbrick'];
+    var blockColors=['baby','baby','baby','baby','baby','baby'];
     
     //物理エンジン対象固定オブジェクトグループ作成
     this.blocks=this.physics.add.staticGroup();
