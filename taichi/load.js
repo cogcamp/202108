@@ -26,7 +26,7 @@ loadScene.preload = function () {
     // ボール画像
     this.load.image('ball1','./assets/images/ball1.png');
     this.load.image('ball2','./assets/images/ball2.png');
-    this.load.image('angry','angry-33059_640.png')
+    this.load.image('angry','./assets/images/angry-33059_640.png');
 };
 
 loadScene.create = function() {

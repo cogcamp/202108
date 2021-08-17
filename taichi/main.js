@@ -171,7 +171,7 @@ mainScene.failToHit =  function () {
 
 mainScene.gameOver = function() {
     // ゲームオーバー
-    alert("ゲームオーバー");
+    alert("ゲームオーバーざまー笑笑");
     // スタートシーンに移動
     this.scene.start("startScene");
 };
