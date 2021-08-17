@@ -59,22 +59,22 @@ mainScene.update = function() {
 
 mainScene.config = function() {
     // 背景色の設定
-    this.cameras.main.setBackgroundColor('#cccccc');
+    this.cameras.main.setBackgroundColor('#ffb6c1');
     
     // パドルの移動速度
-    this.paddleSpeed = 10;
+    this.paddleSpeed = 13;
     
     // ボール発射の加速度
     this.ballSpeedX = 0;
     this.ballSpeedY = -300;
     
     // ライフ
-    this.life = 3;
+    this.life = 10;
 };
 
 mainScene.createBall = function() {
     // ボール作成
-    this.ball=this.physics.add.image(400,500,'ball1');
+    this.ball=this.physics.add.image(400,500,'ball2');
     this.ball.setDisplaySize(22,22);
     this.ball.setCollideWorldBounds(true);
     this.ball.setBounce(1);
@@ -82,7 +82,7 @@ mainScene.createBall = function() {
 
 mainScene.createPaddle = function() {
      // パドル作成
-    this.paddle=this.physics.add.image(400,550,'paddle1');
+    this.paddle=this.physics.add.image(400,550,'paddle2');
     this.paddle.setDisplaySize(104,24);
     this.paddle.setImmovable();
     this.paddle.isStart=true;
@@ -109,15 +109,15 @@ mainScene.hitPaddle = function (paddle, ball) {
 mainScene.createBlocks = function() {
     // 横10列、縦6行並べる
     //ブロックの色の配列
-    var blockColors=['purple1','yellow1','blue1','yellow1','blue1','purple1']
+    var blockColors=['purple1','yellow1','blue1','yellow1','red1','purple1','blue2','yellow1']
     
     //物理エンジン対象固定オブジェクトグループ作成
     this.blocks=this.physics.add.staticGroup();
     
-    //縦に６行
-    for(var i=0;i<6;i++){
+    //縦に6行
+    for(var i=0;i<8;i++){
         //横に10列
-        for(var j=0;j<10;j++){
+        for(var j=0;j<2;j++){
             var color=blockColors[i];
             var block=this.blocks.create(80+j*64,80+i*32,color);
             block.setOrigin(0,0);
@@ -125,8 +125,59 @@ mainScene.createBlocks = function() {
             block.refreshBody();
         }
     }
-    
+    for(var i=0;i<8;i++){
+        
+        for(var j=0;j<2;j++){
+            var color=blockColors[i];
+            var block=this.blocks.create(80+j*256,80+i*32,color);
+            block.setOrigin(0,0);
+            block.setDisplaySize;(64.32);
+            block.refreshBody();
+        }
+    }
+        for(var i=0;i<8;i++){
+        
+        for(var j=0;j<2;j++){
+            var color=blockColors[i];
+            var block=this.blocks.create(80+j*336,48+i*32,color);
+            block.setOrigin(0,0);
+            block.setDisplaySize;(64.32);
+            block.refreshBody();
+        }
+    }
     this.physics.add.collider(this.ball,this.blocks,this.hitBlock,null,this);
+        for(var i=0;i<8;i++){
+        
+        for(var j=0;j<2;j++){
+            var color=blockColors[i];
+            var block=this.blocks.create(80+j*416,80+i*32,color);
+            block.setOrigin(0,0);
+            block.setDisplaySize;(64.32);
+            block.refreshBody();
+        }
+    }
+        for(var i=0;i<8;i++){
+        
+        for(var j=0;j<2;j++){
+            var color=blockColors[i];
+            var block=this.blocks.create(80+j*496,48+i*32,color);
+            block.setOrigin(0,0);
+            block.setDisplaySize;(64.32);
+            block.refreshBody();
+        }
+    }
+        for(var i=0;i<8;i++){
+        
+        for(var j=0;j<2;j++){
+            var color=blockColors[i];
+            var block=this.blocks.create(80+j*176,48+i*32,color);
+            block.setOrigin(0,0);
+            block.setDisplaySize;(64.32);
+            block.refreshBody();
+        }
+    }
+    
+    
 };
 
 mainScene.hitBlock = function (ball, block) {
@@ -146,7 +197,7 @@ mainScene.hitBlock = function (ball, block) {
 
 mainScene.gameClear = function() {
     // ゲームクリア
-    alert("おめでとうございます");
+    alert("🎮🎉ゲームクリア");
     // スタートシーンに移動
     this.scene.start("startScene");
 };
@@ -172,7 +223,7 @@ mainScene.failToHit =  function () {
 
 mainScene.gameOver = function() {
     // ゲームオーバー
-    alert("ゲームオーバー");
+    alert("ゲームオーバー ヒント：一番左のブロックは何度か当てないと消えません");
     // スタートシーンに移動
     this.scene.start("startScene");
 };
