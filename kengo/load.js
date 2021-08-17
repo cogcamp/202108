@@ -1,4 +1,3 @@
-
 var loadScene = new Phaser.Scene("loadScene");
 
 loadScene.preload = function () {
