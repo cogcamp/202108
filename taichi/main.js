@@ -75,7 +75,7 @@ mainScene.config = function() {
 
 mainScene.createBall = function() {
     // ボール作成
-    this.ball=this.physics.add.image(400,500,'angry');
+    this.ball=this.physics.add.image(400,500,'お茶碗');
     this.ball.setDisplaySize(22,22);
     this.ball.setCollideWorldBounds(true);
     this.ball.setBounce(1)
@@ -84,7 +84,7 @@ mainScene.createBall = function() {
 
 mainScene.createPaddle = function() {
      // パドル作成
-    this.paddle=this.physics.add.image(400,550,'paddle1');
+    this.paddle=this.physics.add.image(400,550,'お箸');
     this.paddle.setDisplaySize(104,24);
     this.paddle.setImmovable();
     this.paddle.isStart=true;

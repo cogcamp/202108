@@ -11,11 +11,11 @@ loadScene.preload = function () {
     this.load.image('お箸','./assets/images/watermark.jp');
 
     // ブロック画像
-    this.load.image('red1','./assets/images/red1.png');
-    this.load.image('red2','./assets/images/red2.png');
-    this.load.image('blue1','./assets/images/blue1.png');
-    this.load.image('blue2','./assets/images/blue2.png');
-    this.load.image('green1','./assets/images/green1.png');
+    this.load.image('寿司１','./assets/images/ii.jpg');
+    this.load.image('寿司２','./assets/images/uu.jpg');
+    this.load.image('blue1','./assets/images/ee.jpg');
+    this.load.image('blue2','./assets/images/oo.jpg');
+    this.load.image('green1','./assets/images/kk.jpg');
     this.load.image('green2','./assets/images/green2.png');
     this.load.image('yellow1','./assets/images/yellow1.png');
     this.load.image('yellow2','./assets/images/yellow2.png');
@@ -27,7 +27,7 @@ loadScene.preload = function () {
     // ボール画像
     this.load.image('ball1','./assets/images/ball1.png');
     this.load.image('ball2','./assets/images/ball2.png');
-    this.load.image('angry','./assets/images/angry-33059_640.png');
+    this.load.image('お茶碗','./assets/images/aa.jpeg');
 };
 
 loadScene.create = function() {
