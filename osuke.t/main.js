@@ -77,7 +77,17 @@ mainScene.createPaddle = function() {
 
 mainScene.hitPaddle = function (paddle, ball) {
     // ボールにX方向の角度を設定
-    
+
+    var diff =0;
+    if(ball.x<paddle.x){
+        diff = paddle.x -ball.x;
+        ball.setVelocityX(-10 * diff);
+    }else if(ball.x>paddle.x){
+        diff=ball.x-paddle.x;
+        ball.setVelocityX(10 * diff);
+    }else {
+        ball.setVelocityX(0);
+    }
 };
 
 mainScene.createBlocks = function() {
