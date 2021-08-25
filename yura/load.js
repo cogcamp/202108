@@ -22,7 +22,7 @@ loadScene.preload = function () {
     this.load.image('purple2','./assets/images/purple2.png');
     this.load.image('silver1','./assets/images/silver1.png');
     this.load.image('silver2','./assets/images/silver2.png');
-    
+    this.load.image('black1' ,'./assets/images/black1.png');
     // ボール画像
     this.load.image('ball1','./assets/images/ball1.png');
     this.load.image('ball2','./assets/images/ball2.png');

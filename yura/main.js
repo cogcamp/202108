@@ -25,12 +25,17 @@ mainScene.create = function() {
     this.createBlocks();
     
     // ライフのテキスト表示
-    
+   this.lifeText = this.add.text (30, 20, 'ライフ:' + this.life, {
+       fout: '20px Open Sans',
+       fill: '#ff0000'
+   }); 
 };
 
 mainScene.update = function() {
     // ボールがシーンの最下部に到達した
-    
+    if (this.ball.y >= this.game.config.height - this.ball.width / 2) {
+        this.failToHit();
+    }
     
     // キーボードのカーソルオブジェクトを取得
     var cursors = this.input.keyboard.createCursorKeys();
@@ -101,21 +106,33 @@ mainScene.hitPaddle = function (paddle, ball) {
 };
 
 mainScene.createBlocks = function() {
-    // 横10列、縦6行並べる
+    // 横16列、縦11行並べる
     //ブロックの色の配列
-    var blockColors = [ 'red1' , 'green1' , 'yellow1' , 'silver1' , 'blue1' , 'purple1'];
+    var blockColors = [ 'black1' , 'silver1' , 'blue2' , 'green1' ];
     
     //物理エンジン対象固定オブジェクトグループ作成
     this.blocks = this.physics.add.staticGroup();
-    
-    //縦に6行
-    for (var i = 0; i < 6; i++){
-        //横に6行
-        for (var j = 0; j < 10; j++){
-            var color = blockColors [i];
-            var block = this.blocks.create (80 + j * 64, 80 + i * 32 , color);
-            block.setOrigin (0, 0);
-            block.setDisplaySize (64, 32);
+    var map = [
+        [3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],
+        [3,3,3,3,3,1,1,1,1,1,1,3,3,3,3,3],
+        [3,3,3,3,1,1,1,1,1,1,1,1,3,3,3,3],
+        [3,3,3,1,1,1,0,0,0,0,1,1,1,3,3,3],
+        [3,3,1,1,1,0,0,0,0,0,0,1,1,1,3,3],
+        [3,3,1,1,0,0,2,0,0,2,0,0,1,1,3,3],
+        [3,3,1,1,1,0,0,0,0,0,0,1,1,1,3,3],
+        [3,3,3,1,1,1,0,0,0,0,1,1,1,3,3,3],
+        [3,3,3,3,1,1,1,1,1,1,1,1,3,3,3,3],
+        [3,3,3,3,3,1,1,1,1,1,1,3,3,3,3,3],
+        [3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],
+        ];
+    //縦に11行
+    for (var i = 0; i < 11; i++){
+        //横に16行
+        for (var j = 0; j < 16; j++){
+            var color = blockColors [map[i][j]];
+            var block = this.blocks.create (64 + j * 44 , 64 + i * 22 , color);
+            block.setOrigin (0, 0);　　
+            block.setDisplaySize (44, 22);
             block.refreshBody ();
         }
     }
