@@ -19,26 +19,49 @@ mainScene.create = function() {
     },this);
     
     // ブロック作成
-    
+    this.createBlocks();
     
     // ライフのテキスト表示
-    
+    this.lifeText = this.add.text(30,20,'ライフ:' +this.life,{
+        font:'20px Open Sans',
+       fill:'#ff0000'
+    });
+    //テクスト
+     this.Text = this.add.text(170,0,'近未来の稲作:' +this.block,{
+        font:'20px Open Sans',
+       fill:'#87CEEB'
+    });
 };
 
 mainScene.update = function() {
     // ボールがシーンの最下部に到達した&注目
-   
+   if (this.ball.y >= this.game.config.height - this.ball.width/2){
+       this.failToHit();
+   }
     // キーボードのカーソルオブジェクトを取得
     var cursors = this.input.keyboard.createCursorKeys();
     var x = 0;
+    var y = 0;
+    //右カーソルクリック時
     if (cursors.right.isDown){
         x=this.paddle.x+this.paddleSpeed;
         this.paddle.x = Phaser.Math.Clamp(x,52,748);
     }
+    //左クリック
            if (cursors.left.isDown){
         x=this.paddle.x-this.paddleSpeed;
         this.paddle.x = Phaser.Math.Clamp(x,52,748);
-           }    
+           }  
+           //上クリック（仮）
+           if (cursors.up.isDown){
+        y=this.paddle.y-this.paddleSpeed;
+        this.paddle.y = Phaser.Math.Clamp(x,y,748);
+           }      
+           if (cursors.down.isDown){
+        y=this.paddle.y+this.paddleSpeed;
+        this.paddle.y = Phaser.Math.Clamp(x,y,748);
+           }   
+           
         if (this.paddle.isStart){
             this.ball.setPosition(this.paddle.x,500);
         
@@ -58,7 +81,7 @@ mainScene.config = function() {
     this.ballSpeedY = -300;
     
     // ライフ
-    this.life = 3;
+    this.life = 50;
 };
 
 mainScene.createBall = function() {
@@ -66,7 +89,7 @@ mainScene.createBall = function() {
      this.ball =this.physics.add.image(400,500,'ball1');
     this.ball.setDisplaySize(22,22);
     this.ball.setCollideWorldBounds(true);
-    this.ball.setBounce(1)
+    this.ball.setBounce(1);
 };
 
 mainScene.createPaddle = function() {
@@ -74,8 +97,8 @@ mainScene.createPaddle = function() {
     this.paddle = this.physics.add.image(400,550,'paddle1');
      this.paddle.setDisplaySize(100,39);
     this.paddle.setImmovable();
-    this.paddle.IsStart = true;
-    this.physics.add.collider(this.paddle,this.hitPaddle,null,this)
+    this.paddle.isStart = true;
+    this.physics.add.collider(this.paddle,this.ball,this.hitPaddle,null,this)
     
     
 };
@@ -85,20 +108,31 @@ mainScene.hitPaddle = function (paddle, ball) {
     var diff = 0;
     if (ball.x < paddle.x){
         diff =paddle.x-ball.x;
-        ball.setVelocityx(-10  * diff);
+        ball.setVelocityX(-10  * diff);
     }else if (ball.x >paddle.x){
            diff =ball.x-paddle.x;
-        ball.setVelocityx(10  * diff);
+        ball.setVelocityX(10  * diff);
     }else{
-        ball.setVelocity(0);
+        ball.setVelocityX(0);
     }
     
 };
 
 mainScene.createBlocks = function() {
     // 横10列、縦6行並べる
-    
-    
+    var blockColors=['blue1','silver1','yellow1','green1','green1','red1'];
+    this.blocks = this.physics.add.staticGroup();
+    //縦６行
+    for(var i =0;i<6;i++){
+        for(var j= 0;j<10;j++){
+    var color = blockColors[i];
+    var block =this.blocks.create(80+j*64,80+i*32,color);
+    block.setOrigin(0,0);
+    block.setDisplaySize(64,32);
+    block.refreshBody();
+        }
+    }
+    this.physics.add.collider(this.ball,this.blocks,this.hitBlock,null,this);
 };
 
 mainScene.hitBlock = function (ball, block) {
@@ -144,8 +178,7 @@ mainScene.failToHit =  function () {
 
 mainScene.gameOver = function() {
     // ゲームオーバー
-    alert("ゲームオーバー");
+    alert("あきらめるものか");
     // スタートシーンに移動　以前のものを撤去
    this.scene.start("startScene");
-
 };
