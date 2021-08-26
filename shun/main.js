@@ -68,7 +68,7 @@ mainScene.config = function() {
     this.ballSpeedY = -3000;
     
     // ライフ
-    this.life = 999999999;
+    this.life = 100;
 };
 
 mainScene.createBall = function() {
@@ -147,7 +147,20 @@ mainScene.hitBlock = function (ball, block) {
 
 mainScene.gameClear = function() {
     // ゲームクリア
-    alert("おめでとうございます");
+    after
+    var life =80;
+    
+    if ( life == 100) {
+        console.log(' パーフェクトです');
+    } else if( life >= 90) {
+        console.log('かなり良い点数です');
+    } else if( life >= 80 ) {
+        console.log('良い点数です');
+    } else if( life >= 70 ) {
+        console.log('普通の点数です');
+    } else {
+        console.log('頑張ろう');
+    }
     // スタートシーンに移動
     this.scene.start("startScene");
 };
@@ -161,7 +174,7 @@ mainScene.failToHit =  function () {
     this.lifeText.text = 'ライフ：' + this.life;
     // ライフが0になると
     if(this.life <= 0) {
-        // 0.5秒後にゲームオーバー
+        // 0.0000000000000000000000001秒後にゲームオーバー
         this.time.addEvent({
             duration: 500,
             callback: this.gameOver,
