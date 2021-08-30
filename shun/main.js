@@ -11,7 +11,7 @@ mainScene.create = function() {
     // パドル作成
     this.createPaddle();
     
-    // スペースキーのクリックでボール発射
+    //スペースキーのクリックでボール発射
     this.input.keyboard.on('keydown-SPACE',function(event){
         //ゲーム開始状態ならば
         if (this.paddle.isStart){
@@ -62,13 +62,13 @@ mainScene.config = function() {
     this.cameras.main.setBackgroundColor('#cccccc');
     
     // パドルの移動速度
-    this.paddleSpeed = 10
+    this.paddleSpeed = 18 
     // ボール発射の加速度
     this.ballSpeedX = 20;
-    this.ballSpeedY = -3000;
+    this.ballSpeedY = -300;
     
     // ライフ
-    this.life = 100;
+    this.life = 0
 };
 
 mainScene.createBall = function() {
@@ -106,15 +106,15 @@ mainScene.hitPaddle = function (paddle, ball) {
 };
 
 mainScene.createBlocks = function() {
-    // 横10列、縦6行並べる
+    // 縦10列,横10行並べる
     //ブロックの色の配列
-    var blockColors = [ 'red1' , 'green1' , 'yellow1' , 'silver1' , 'blue1', 'purple1' ];
+    var blockColors= ['red2' , 'green2' , 'yellow2' , 'silver2' , 'blue2', 'purple2' ];
     
     //物理エンジンの対象固定オブジェクトグループ作成
     this.blocks = this.physics.add.staticGroup();
     
-    //横に６行
-    for(var i = 0; i < 6; i++) {
+    //縦に12行
+    for(var i = 0; i < 12; i++) {
         // 横に１０列
         for( var j = 0; j < 10; j++) {
             var color = blockColors[i];
@@ -135,7 +135,7 @@ mainScene.hitBlock = function (ball, block) {
     block.destroy();
     // ブロックの残りを判定
     if (this.blocks.countActive() == 0) {
-        // ブロックがなくなると、0.5秒後にゲームクリア
+        // ブロックがなくなると、1.0秒後にゲームクリア
         this.time.addEvent({
             duration: 500,
             callback: this.gameClear,
@@ -147,16 +147,15 @@ mainScene.hitBlock = function (ball, block) {
 
 mainScene.gameClear = function() {
     // ゲームクリア
-    after
-    var life =80;
+    var life =8;
     
-    if ( life == 100) {
+    if ( life == 10) {
         console.log(' パーフェクトです');
-    } else if( life >= 90) {
+    } else if( life >= 9) {
         console.log('かなり良い点数です');
-    } else if( life >= 80 ) {
+    } else if( life >= 8 ) {
         console.log('良い点数です');
-    } else if( life >= 70 ) {
+    } else if( life >= 7 ) {
         console.log('普通の点数です');
     } else {
         console.log('頑張ろう');
@@ -167,14 +166,14 @@ mainScene.gameClear = function() {
 
 mainScene.failToHit =  function () {
     // ボールを打ち返すことに失敗
-    this.ball.setVelocity(0);
+    this.ball.setVelocity(-10);
     this.paddle.isStart = true;
     // ライフを減らす
     this.life--;
     this.lifeText.text = 'ライフ：' + this.life;
-    // ライフが0になると
-    if(this.life <= 0) {
-        // 0.0000000000000000000000001秒後にゲームオーバー
+    // ライフが-100になると
+    if(this.life <= -100) {
+        // 1秒後にゲームオーバー
         this.time.addEvent({
             duration: 500,
             callback: this.gameOver,
